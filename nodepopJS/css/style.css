@@ -1,0 +1,58 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+.grid{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr 0.5fr;
+    grid-auto-rows: auto;
+    grid-template-areas:
+    "header"
+    "section"
+    "footer"
+}
+
+header{
+    grid-area: header;
+    background-color: rgb(23, 49, 49);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    ". logo nav"
+}
+
+section{
+    grid-area: section;
+    background-color: rgb(209, 209, 209)
+}
+
+footer{
+    grid-area: footer;
+    background-color: rgb(23, 49, 49);
+}
+
+#logo{
+    grid-area: logo;
+}
+
+nav{
+    grid-area: nav;
+
+    color: white;
+    width: 100%;
+    align-self: center;
+}
+
+nav>ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav>ul>li{
+    display: inline;
+}
