@@ -1,0 +1,58 @@
+.grid_form{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 10fr;
+    grid-auto-rows: auto;
+    grid-template-areas:
+    "header"
+    "form"
+}
+
+form {
+    grid-area: form;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+    padding-bottom: 10rem;
+
+}
+
+input, button {
+    display: block;
+    width: 400px;
+    height: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+
+}
+
+button {
+    background-color: darkorange;
+    color: white;
+    font-size: 1rem;
+}
+
+h2{
+    font-size: 3rem;
+    color: darkorange;
+}
+
+.enlace{
+    margin: 2rem;
+    font-size: 1.5rem;
+}
+
+a:link, a:visited, a:active {
+    color: grey;
+    text-decoration: none;
+
+}
+
+.a {
+    font-weight: 700;
+    color: darkorange;
+}

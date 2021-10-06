@@ -1,6 +1,6 @@
 import BaseDatos from "../servicios/BaseDatos.js"
 import { esquemaArticulo } from "../views.js"
-import PubSub from "../services/PubSub.js"
+import PubSub from "../servicios/PubSub.js"
 
 export default class ControladorListadoJuegos{
     constructor(elemento){
@@ -20,7 +20,7 @@ export default class ControladorListadoJuegos{
                 this.elemento.appendChild(etiquetaHTMLconArticulo)
         }
         } catch (error) {
-            PubSub.publish(PubSub.events.SHOW_ERROR, 'Error en la base de datos')
+            PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al obtener los articulos')
         }
     } 
     }

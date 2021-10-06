@@ -1,16 +1,22 @@
-import PubSub from "../services/PubSub.js"
 
-const url="http://localhost:8000/api"
+
+const url="http://localhost:8000"
 
 export default {
     GETarticulos: async function(){
-        const GETurl=url+"games"
+        const GETurl=url+"/api/games"
         try {
             const respuesta =  await fetch(GETurl)
             const articulos = await respuesta.json()
             return articulos
         } catch (error) {
-            PubSub.publish(PubSub.events.SHOW_ERROR, 'Error en la base de datos')
+            console.log(error)
         }
+    },
+
+    creaCuenta: async function(username, password) {
+        const url = '/auth/register'
+        return await this.post(url, {username, password})
     }
+
 }
