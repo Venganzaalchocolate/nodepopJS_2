@@ -16,5 +16,5 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // Crear una instancia de ErrorMessageController
     new ControladorMensaje(mensajes)
 
-
+    
 } )

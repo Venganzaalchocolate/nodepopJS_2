@@ -96,18 +96,18 @@ nav>ul{
 }
 
 nav>ul>li{
+    padding: 0.5rem;
     display: flex;
     width: 100%;
 }
 
-.login {
-    justify-content: right;
-    padding-right: 1rem;
+.boton, .boton-login{
+    width: 20%;
 }
 
 .a-header{
     display: inline-block;
-    width: 50%;
+    width: 100%;
     text-align: center;
 }
 
@@ -125,7 +125,7 @@ nav>ul>li{
 }
 
 .buscar>input{
-    width: 50%;
+    width: 100%;
     height: 2rem;
     border-radius: 1rem;
     text-align: center;
@@ -151,4 +151,20 @@ input:valid {
 
 input:invalid{
     background-color: rgb(251, 225, 225);
+}
+
+.boton {
+    visibility:hidden;
+}
+
+.fa-sign-in-alt{
+    color: rgb(231, 55 , 60);
+}
+
+.fa-cloud-upload-alt{
+    color: rgb(0   , 156 , 140);
+}
+
+.fa-edit{
+    color: rgb(234,90,42);   
 }
