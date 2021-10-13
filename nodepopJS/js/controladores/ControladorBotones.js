@@ -20,12 +20,14 @@ export default class {
                 this.elemento.forEach(element => {
                     element.setAttribute("style", "visibility:visible;")
                 });
+                document.querySelector(".fa-sign-in-alt").setAttribute("style", "color:rgb(0, 156, 140)")
             }
             
         } catch (error) {
             PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al comprobar si está logueado')
         }
     }
-    
+
+
 
 }

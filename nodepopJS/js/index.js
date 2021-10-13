@@ -1,4 +1,5 @@
 import ControladorBotones from "./controladores/ControladorBotones.js"
+import ControladorBotonLogin from "./controladores/ControladorBotonLogin.js"
 import ControladorListadoJuegos from "./controladores/ControladorListadoJuegos.js"
 import ControladorMensaje from "./controladores/ControladorMensajes.js"
 
@@ -26,7 +27,17 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // Creo el controlador de Botones
     const controladorBotones=  new ControladorBotones(botones)
 
+    // muestra los botones de crear y modificar articulo y cambia de color el login (solo si está logueado)
     controladorBotones.pintaBotones()
 
+    // Seleccionamos el nodo de los botones
+    const botonLogin = document.querySelector('#login')
+
+    // controla el boton login
+    const controladorBotonLogin=  new ControladorBotonLogin(botonLogin)
+
+    controladorBotonLogin.escuchaEventos()
+
+    
 
 } )

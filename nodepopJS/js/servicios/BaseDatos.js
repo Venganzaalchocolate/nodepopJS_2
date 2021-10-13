@@ -66,6 +66,9 @@ export default {
         return localStorage.getItem('AUTH_TOKEN') !== null
     },
 
+    cerrarSesion: function () {
+        localStorage.removeItem('AUTH_TOKEN')
+    }
 
 }
 

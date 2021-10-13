@@ -11,11 +11,7 @@ a:link, a:visited, a:active {
 
 }
 
-button {
-    background-color: darkorange;
-    color: white;
-    font-size: 1rem;
-}
+
 
 body {
     background-image: url(/nodepopJS/recursos/imagenes/fondo.jpg);
@@ -98,11 +94,6 @@ nav>ul{
 nav>ul>li{
     padding: 0.5rem;
     display: flex;
-    width: 100%;
-}
-
-.boton, .boton-login{
-    width: 20%;
 }
 
 .a-header{
@@ -111,7 +102,7 @@ nav>ul>li{
     text-align: center;
 }
 
-.a-header>button{
+.a-header>button, .login{
 
     width: 100%;
     height: 2rem;
@@ -129,6 +120,7 @@ nav>ul>li{
     height: 2rem;
     border-radius: 1rem;
     text-align: center;
+    margin-right: 2rem;
 }
 
 article{
@@ -153,6 +145,31 @@ input:invalid{
     background-color: rgb(251, 225, 225);
 }
 
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+#boton-login{
+    text-decoration: none;
+    background-color: none;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
 .boton {
     visibility:hidden;
 }
@@ -162,7 +179,7 @@ input:invalid{
 }
 
 .fa-cloud-upload-alt{
-    color: rgb(0   , 156 , 140);
+    color: rgb(0,149,194);
 }
 
 .fa-edit{

@@ -6,11 +6,11 @@ export default class {
 
     constructor(elemento) {
         this.elemento=elemento
-        this.escuchaEventos()
+        this.iniciaSesion()
     }
 
-    escuchaEventos(){
-
+    iniciaSesion(){
+        // cuando se envie el formulario
         this.elemento.addEventListener('submit', async function(evento){
 
             //evitamos el comportamiento por defecto (que el formulario se envie) para poder comprobar antes si es válido
@@ -25,7 +25,7 @@ export default class {
                     const username = formulario.get('username')  //<input  name="username">
                     const password = formulario.get('password') // <input  name="password">
 
-                    // creado el objeto llamamos al servidor y le inroducimos los datos con un método posta (ya)
+                    // creado el objeto llamamos al servidor y le inroducimos los datos con un método post 
                     try {
                         await BaseDatos.loginCuenta(username, password)
                         location.href = 'index.html'

@@ -8,12 +8,20 @@ export default class ControladorMensaje{
         PubSub.subscribe(PubSub.events.SHOW_ERROR, error => {
             this.pintarError(error)
         })
+        PubSub.subscribe(PubSub.events.SHOW_SUCCESS, message => {
+            this.exito(message)
+        })
 
+        
     }
 
     pintarError(errores){
         this.elemento.innerHTML=esquemaError(errores)
         
+    }
+
+    exito(message) {
+        this.elemento.innerHTML=esquemaExito(message)
     }
 
     

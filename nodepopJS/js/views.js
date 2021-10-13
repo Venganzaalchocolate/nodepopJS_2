@@ -10,5 +10,9 @@ export function esquemaArticulo(articulo) {
 }
 
 export function esquemaError(error) {
-    return `<p>${error}</p>`
+    return `<p class="textoError">${error}</p>`
+}
+
+export function esquemaExito(message) {
+    return `<p class="textoExito">${message}</p>`
 }
