@@ -4,7 +4,7 @@ const url="http://localhost:8000"
 
 export default {
     GETarticulos: async function(){
-        const GETurl=url+"/api/games"
+        const GETurl=url+"/api/articulos"
         try {
             const respuesta =  await fetch(GETurl)
             const articulos = await respuesta.json()
@@ -24,43 +24,92 @@ export default {
         const formulario = await this.post(LOGINurl, {username, password})
         const token = formulario.accessToken
         localStorage.setItem('AUTH_TOKEN', token)
+        
 
     }, 
+
+    creaArticulo: async function(nombre, precio, estado, imagen) {
+        const CREAurl = url + '/api/articulos'
+        return await this.post(CREAurl, { nombre, precio, estado, imagen })
+    },
+
+    getDetalleArticulo: async function(id) {
+        const DETALLEurl =url+ `/api/articulos/${id}?_expand=user`
+        const respuesta = await fetch(DETALLEurl)
+        if (respuesta.ok) {
+            const articulo = await respuesta.json()
+            articulo.sePuedeBorrar = articulo.userId === this.getAuthUserId()
+            return articulo
+        } else {
+            if (respuesta.status === 404) {
+                return null
+            } else {
+                throw new Error('Error al cargar el tweet')
+            }
+        }
+    },
+
+    deleteBorraArticulo: async function(id) {
+        const BORRARurl=url+`/api/articulos/${id}`
+        return this.delete(BORRARurl)
+    },
+
 
 
     post: async function(url, body) {
         return await this.request('POST', url, body)
     },
 
+    delete: async function (url, body={}) {
+        return await this.request('DELETE', url, body)
+    }, 
+
     request: async function(method, url, body) {
         const requestConfig = {
             method: method,
             headers: {
-            'content-type': 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(body)
-        };
-
+        }
         if (this.isAuthenticed()) {
             const token = localStorage.getItem('AUTH_TOKEN')
             // requestConfig.headers.Authorization = `Bearer ${token}`
             requestConfig.headers['Authorization'] = `Bearer ${token}`
         }
-
-        const respuesta = await fetch(url, requestConfig)
-
+        const response = await fetch(url, requestConfig)
         try {
-            const formulario = await respuesta.json()
-            if (respuesta.ok) {
-                return formulario
+            const data = await response.json()
+            if (response.ok) {
+                return data
             } else {
-                throw new Error(formulario.response)
+                throw new Error(data.message)
             }
         } catch (error) {
             throw error
         }
-
     },
+
+    getAuthUserId: function() {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        if (token === null) {
+            return null
+        }
+        const b64Parts = token.split('.')
+        if (b64Parts.length !== 3) {
+            return null
+        }
+        const b64Data = b64Parts[1]
+        try {
+            const userJSON = atob(b64Data)
+            const user = JSON.parse(userJSON)
+            return user.userId
+        } catch (error) {
+            console.error('Error while decoding JWT Token', error)
+            return null
+        }
+    },
+
 
     isAuthenticed: function() {
         return localStorage.getItem('AUTH_TOKEN') !== null
@@ -68,6 +117,7 @@ export default {
 
     cerrarSesion: function () {
         localStorage.removeItem('AUTH_TOKEN')
+        location.href = 'index.html'
     }
 
 }

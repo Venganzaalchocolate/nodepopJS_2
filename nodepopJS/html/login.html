@@ -10,18 +10,21 @@
 </head>
 <body>
     <!--contenido principal-->
-    <div class="grid_form">
+    <div class="grid">
         <header>
             <div id="logo"><a href="index.html"></a></div>
         </header>
-        <form>
+        <section>
+            <form>
                 <h2>Inicia Sesión</h2>
                 <input type="text" name="username" placeholder="Escribe aquí tu usuario" required title="Solo se permiten letras y números" autofocus pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$">
                 <input type="password" name="password" placeholder="Escribe aquí tu contraseña" required title="La constraseña debe tener mínimo 8 carácteres, 1 mayúscula y 1 minúscula" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                 <button type="submit">Entrar</button>
                 <div class="enlace"><a href="creaCuenta.html">Si no tienes todavía, <span class="a">crea tu cuenta</span></a></div>
-                <div class="error"></div>
-        </form>
+                <div class="mensaje"></div>
+            </form>
+        </section>
+        <footer></footer>
     </div>
     <script type="module" src="/nodepopJS/js/loginCuenta.js"></script>
 </body>

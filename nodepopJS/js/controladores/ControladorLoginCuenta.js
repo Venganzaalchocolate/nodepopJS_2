@@ -28,7 +28,7 @@ export default class {
                     // creado el objeto llamamos al servidor y le inroducimos los datos con un método post 
                     try {
                         await BaseDatos.loginCuenta(username, password)
-                        location.href = 'index.html'
+                        window.location.href = 'index.html'
                     } catch (error) {
                         PubSub.publish(PubSub.events.SHOW_ERROR, 'El usuario y/o la contraseña con incorrectos')
                     }

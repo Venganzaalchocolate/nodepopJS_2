@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     new ControladorCreaCuenta(form)
 
     // Seleccionamos el nodo para mostrar mensajes de error
-    const mensajes = document.querySelector('.error')
+    const mensajes = document.querySelector('.mensaje')
 
     // Crear una instancia de ErrorMessageController
     new ControladorMensaje(mensajes)

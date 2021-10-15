@@ -2,12 +2,12 @@ import BaseDatos from "../servicios/BaseDatos.js"
 import { esquemaArticulo } from "../views.js"
 import PubSub from "../servicios/PubSub.js"
 
-export default class ControladorListadoJuegos{
+export default class ControladorListadoArticulos{
     constructor(elemento){
         this.elemento=elemento
     }
 
-    async pintarJuegos(){
+    async pintarArticulos(){
         try {
             const articulos= await BaseDatos.GETarticulos()
             for (const articulo of articulos) {

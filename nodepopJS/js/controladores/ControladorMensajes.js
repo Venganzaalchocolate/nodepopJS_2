@@ -3,6 +3,7 @@ import { esquemaError } from "../views.js"
 
 
 export default class ControladorMensaje{
+
     constructor(elemento){
         this.elemento=elemento
         PubSub.subscribe(PubSub.events.SHOW_ERROR, error => {
@@ -21,8 +22,8 @@ export default class ControladorMensaje{
     }
 
     exito(message) {
-        this.elemento.innerHTML=esquemaExito(message)
+        window.alert(message)
+        window.location.href = "index.html"
     }
 
-    
 }

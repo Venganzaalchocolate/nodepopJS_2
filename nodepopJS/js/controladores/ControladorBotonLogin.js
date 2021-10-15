@@ -19,10 +19,10 @@ export default class {
                 //si está logueado me muestras los botones para crear y modificar
                 if (estaLogin) {
                     // cierras sesion
-                    await BaseDatos.cerrarSesion()
-                    location.href = 'index.html'
+                    window.location.href = 'index.html'
+                    return await BaseDatos.cerrarSesion()
                 } else {
-                    location.href = 'login.html'
+                    window.location.href = 'login.html'
                 }
                 
             } catch (error) {
