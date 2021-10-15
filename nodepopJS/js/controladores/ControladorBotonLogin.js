@@ -13,20 +13,22 @@ export default class {
 
         this.elemento.addEventListener('click', async ()=>{
             try {
-                // me miras si está logueado
+                // Compruebo que haya iniciado sesión 
                 const estaLogin = await BaseDatos.isAuthenticed()
     
-                //si está logueado me muestras los botones para crear y modificar
+                // Si ha iniciado sesión, la cierro borrando el token en la BaseDatos
                 if (estaLogin) {
-                    // cierras sesion
+                    // He intentado que después de cerrar sesión me redirigiera a index.html pero no lo he consegui, no se porque no lo hace. Le agradeceria que me dijera el motivo. 
+                    // He probado cambiando el orden pero no consigo que haga nada. 
                     window.location.href = 'index.html'
                     return await BaseDatos.cerrarSesion()
                 } else {
+                    // Si no ha iniciado sesión le muestro la página de login
                     window.location.href = 'login.html'
                 }
                 
             } catch (error) {
-                PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al comprobar si está logueado')
+                PubSub.publish(PubSub.events.SHOW_ERROR, error)
             }
         })
 

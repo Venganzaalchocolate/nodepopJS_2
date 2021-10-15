@@ -1,6 +1,6 @@
 import ControladorLoginCuenta from "./controladores/ControladorLoginCuenta.js"
 import ControladorMensaje from "./controladores/ControladorMensajes.js"
-
+import PubSub from "../js/servicios/PubSub.js"
 
 window.addEventListener('DOMContentLoaded', ()=>{
 
@@ -16,5 +16,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // Crear una instancia de ErrorMessageController
     new ControladorMensaje(mensajes)
 
-    
+    debugger
+    PubSub.publish(PubSub.events.HIDDEN_LOADING)
+
 } )

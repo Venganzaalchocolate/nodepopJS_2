@@ -10,6 +10,7 @@ export default class {
     }
 
     iniciaSesion(){
+        
         // cuando se envie el formulario
         this.elemento.addEventListener('submit', async function(evento){
 
@@ -19,6 +20,7 @@ export default class {
             // comprobamos si el formulario valida en el html.
             // El método HTMLSelectElement.checkValidity() comprueba si el elemento tiene restricciones y si las cumple. Si el elemento no cumple sus restricciones, el navegador lanza un evento cancelable invalid (en-US) al momento y luego devuelve false.
             if (this.checkValidity()) {
+
                 try {
                     //La interfaz FormData proporciona una manera sencilla de construir un conjunto de parejas clave/valor que representan los campos de un formulario y sus valores
                     const formulario=new FormData(this)
@@ -28,16 +30,18 @@ export default class {
                     // creado el objeto llamamos al servidor y le inroducimos los datos con un método post 
                     try {
                         await BaseDatos.loginCuenta(username, password)
-                        window.location.href = 'index.html'
+                        window.location.href="index.html"
+                        
                     } catch (error) {
-                        PubSub.publish(PubSub.events.SHOW_ERROR, 'El usuario y/o la contraseña con incorrectos')
+                        PubSub.publish(PubSub.events.SHOW_ERROR, error.message)
                     }
                     
-                    //PubSub.publish(PubSub.events.SHOW_SUCCESS, 'Registrado correctamente')
 
                 } catch (error) {
-                    PubSub.publish(PubSub.events.SHOW_ERROR, error)
-                } 
+                    PubSub.publish(PubSub.events.SHOW_ERROR, error.message)
+                } finally {
+                    PubSub.publish(PubSub.events.HIDDEN_LOADING)
+                }
                 
             } else {
                 PubSub.publish(PubSub.events.SHOW_ERROR, 'Falla en la validación del formulario')

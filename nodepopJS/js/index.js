@@ -1,10 +1,15 @@
 import ControladorBotones from "./controladores/ControladorBotones.js"
 import ControladorBotonLogin from "./controladores/ControladorBotonLogin.js"
 import ControladorListadoArticulos from "./controladores/ControladorListadoArticulos.js"
+import ControladorLoader from "./controladores/ControladorLoader.js"
 import ControladorMensaje from "./controladores/ControladorMensajes.js"
 
 
 window.addEventListener('DOMContentLoaded', ()=>{
+
+    const loader = document.querySelector('.cargador')
+
+    new ControladorLoader(loader)
 
     // Selecciono la section del html
     const section = document.querySelector('section')

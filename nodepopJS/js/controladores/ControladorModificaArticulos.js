@@ -12,13 +12,15 @@ export default class {
 
 
     async cargaDetalleArticulo(id){
+        PubSub.publish(PubSub.events.SHOW_LOADING)
         try {
             const articulo = await BaseDatos.getDetalleArticulo(id)
             this.elemento.innerHTML = esquemaArticuloDetalle(articulo)
         } catch (error) {
-            PubSub.publish(PubSub.events.SHOW_ERROR, "No existe este artículo")
+            PubSub.publish(PubSub.events.SHOW_ERROR, error.message)
         } finally {
             this.hayBoton(id)
+            PubSub.publish(PubSub.events.HIDDEN_LOADING)
         }
     }
 
@@ -26,14 +28,15 @@ export default class {
         const boton = document.querySelector('.borrar')
         if(boton!==null){
             boton.addEventListener('click', async ()=>{
-                const pregunta = window.confirm('¿Seguro que quieres borrar')
+                const pregunta = window.confirm('¿Seguro que quieres borrar?')
                 if (pregunta) {
                     try {
+                        PubSub.publish(PubSub.events.SHOW_LOADING)
                         await BaseDatos.deleteBorraArticulo(id)
                         PubSub.publish(PubSub.events.SHOW_SUCCESS, 'Se ha borrado con éxito')
                     } catch (error) {
                         PubSub.publish(PubSub.events.SHOW_ERROR, "No se ha podido borrar el artículo")
-                    }
+                    } finally {PubSub.publish(PubSub.events.HIDDEN_LOADING)}
                 }
             })
         }

@@ -1,4 +1,4 @@
-import ControladorBotonServidor from "./controladores/ControladorBotonServidor.js"
+import ControladorBotonServidor from "./controladores/ControladorBotonRespuestaHTTP.js"
 
 window.addEventListener('DOMContentLoaded', ()=>{
     const boton = document.querySelector('button')

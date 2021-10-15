@@ -10,9 +10,11 @@ export default {
             const articulos = await respuesta.json()
             return articulos
         } catch (error) {
-            console.log(error)
+            throw new Error('Error al recuperar los ARTICULOS')
         }
     },
+
+    
 
     creaCuenta: async function(username, password, email) {
         const REGISTROurl = url+'/auth/register'
@@ -44,7 +46,7 @@ export default {
             if (respuesta.status === 404) {
                 return null
             } else {
-                throw new Error('Error al cargar el tweet')
+                window.location.href="respuestaHTTP.html"
             }
         }
     },
@@ -77,8 +79,9 @@ export default {
             // requestConfig.headers.Authorization = `Bearer ${token}`
             requestConfig.headers['Authorization'] = `Bearer ${token}`
         }
-        const response = await fetch(url, requestConfig)
+
         try {
+            const response = await fetch(url, requestConfig)
             const data = await response.json()
             if (response.ok) {
                 return data
@@ -118,8 +121,9 @@ export default {
     cerrarSesion: function () {
         localStorage.removeItem('AUTH_TOKEN')
         location.href = 'index.html'
-    }
+    }, 
 
+    
 }
 
 

@@ -26,17 +26,18 @@ export default class {
                     const email = formulario.get('email')  //<input  name="email">
                     const password = formulario.get('password1') 
 
-                    // comprobamos si son iguales las contraseñas
-                    if (this.comparaContrasenas(formulario.get('password1'), formulario.get('password2'))) {
+                    // comprobamos si son iguales las contraseñas y si no estan intentando injectar codigo en el username o email
+                    if (this.comparaContrasenas(formulario.get('password1'), formulario.get('password2'))
+                        && this.validaCampos(username)===false
+                        && this.validaCampos(email)===false) {
                         //si son iguales lo grabamos en la BD
                         await BaseDatos.creaCuenta(username, password, email)
-                        window.alert("Usuario Registrado con éxito");
-                        location.href = 'index.html'
+                        PubSub.publish(PubSub.events.SHOW_SUCCESS, 'Registrado correctamente')
 
                     }
 
                 } catch (error) {
-                    PubSub.publish(PubSub.events.SHOW_ERROR, 'El nombre de usuario ya existe, porfavor elije otro nombre')
+                    PubSub.publish(PubSub.events.SHOW_ERROR, error.message)
                     
                 } 
                 
@@ -51,6 +52,17 @@ export default class {
             return true
         } else {
             PubSub.publish(PubSub.events.SHOW_ERROR, 'Las contraseñas no son iguales')
+        }
+    }
+
+    validaCampos(campo){
+        const expresionRegular = new RegExp('[<>\*\$=_]')
+        debugger
+        const validado = expresionRegular.test(campo)
+        if (validado) {
+            return PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al validar los campos, contiene caracteres especiales')
+        } else {
+            return validado
         }
     }
 

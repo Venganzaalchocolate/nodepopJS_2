@@ -7,7 +7,7 @@ export default {
         SHOW_SUCCESS: 'SHOW_SUCCESS',
         SHOW_ERROR: 'SHOW_ERROR',
         SHOW_LOADING: 'SHOW_LOADING',
-        HIDE_LOADING: 'HIDE_LOADING'
+        HIDDEN_LOADING: 'HIDDEN_LOADING'
     },
 
     subscribe: function (topic, listener) {

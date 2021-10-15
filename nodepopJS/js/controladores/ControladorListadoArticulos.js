@@ -8,6 +8,7 @@ export default class ControladorListadoArticulos{
     }
 
     async pintarArticulos(){
+        PubSub.publish(PubSub.events.SHOW_LOADING)
         try {
             const articulos= await BaseDatos.GETarticulos()
             for (const articulo of articulos) {
@@ -20,7 +21,9 @@ export default class ControladorListadoArticulos{
                 this.elemento.appendChild(etiquetaHTMLconArticulo)
         }
         } catch (error) {
-            PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al obtener los articulos')
+            window.location.href="respuestaHTTP.html"
+        } finally {
+            PubSub.publish(PubSub.events.HIDDEN_LOADING)
         }
     } 
     }

@@ -1,14 +1,16 @@
 
 
 export function esquemaArticulo(articulo) {
-    return `
+    return `<a class="aIndex" href="/nodepopJS/html/modificaArticulo.html?id=${articulo.id}">
             <div class="imagen">
-            <img src="${articulo.imagen}">
+                <img src="${articulo.imagen}">
             </div>
-            <h2 class="nombre">${articulo.nombre}</h2>
-            <p class="precio">${articulo.precio} €</p>
-            <p class="estado">${articulo.estado}</p>
-            <a href="/nodepopJS/html/modificaArticulo.html?id=${articulo.id}">+ info</a>`
+            <div class="datosIndex">
+                <h2 class="nombre">${articulo.nombre}</h2>
+                <p class="precio">${articulo.precio} €</p>
+                <p class="estado">${articulo.estado}</p>
+            </div>
+            </a>`
 }
 
 export function esquemaError(error) {
@@ -20,7 +22,7 @@ export function esquemaError(error) {
 export function esquemaArticuloDetalle(articulo) {
     const fecha = new Date(articulo.updatedAt).toLocaleDateString()
     const hora = new Date(articulo.updatedAt).toLocaleTimeString()
-    const boton = articulo.sePuedeBorrar ? `<button class="borrar">borrar</button>` : ''
+    const boton = articulo.sePuedeBorrar ? `<button class="borrar">BORRAR</button>` : ''
     return `<article class="detalle">
             <div class="imagen">
                 <img class="detalleImagen"src="${articulo.imagen}">

@@ -12,7 +12,7 @@ export default class {
     async pintaBotones() {
 
         try {
-            // me miras si está logueado
+            // Compruebo que haya iniciado sesión 
             const estaLogin = await BaseDatos.isAuthenticed()
 
             //si está logueado me muestras los botones para crear y modificar
@@ -24,7 +24,7 @@ export default class {
             }
             
         } catch (error) {
-            PubSub.publish(PubSub.events.SHOW_ERROR, 'Error al comprobar si está logueado')
+            PubSub.publish(PubSub.events.SHOW_ERROR, error)
         }
     }
 

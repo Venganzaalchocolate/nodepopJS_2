@@ -22,7 +22,9 @@
     "imagen botones"
 }
 
-
+article:hover{
+    transform: scale(1)
+}
 
 article>.datos{
     grid-area: datos;
@@ -49,6 +51,17 @@ article>.datos{
 .botonBorrar{
     grid-area: botones;
     display: flex;
-    justify-content: flex-end;
-    padding: 2rem;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.borrar{
+    color: white;
+    font-weight: bold;
+    background-color: rgb(234,90,42);
+    width: 50%;
+    height: 2rem;
+    border-radius: 1rem;
+
 }
